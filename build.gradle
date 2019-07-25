@@ -1,0 +1,64 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.3.41'
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }//添加jitpack仓库地址
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }//添加jitpack仓库地址
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//applicationId
+project.ext.set("applicationId", "com.zhousaito.mvvmmoduledemo")
+
+project.ext.set("compileSdkVersion", "28")
+project.ext.set("minSdkVersion", "21")
+project.ext.set("targetSdkVersion", "28")
+
+project.ext.set("versionCode", "1")
+project.ext.set("versionName", "1.0")
+
+//ui
+project.ext.set("appcompat", "1.1.0-rc01")
+project.ext.set("corektx", "1.1.0-rc01")
+project.ext.set("constraintlayout", "1.1.3")
+project.ext.set("material", "1.0.0")
+project.ext.set("BaseRecyclerViewAdapterHelper", "2.9.46")
+
+project.ext.set("SmartRefreshLayout", "1.1.0-andx-14")
+project.ext.set("legacy", "1.0.0")
+
+//net
+project.ext.set("coroutines", "1.3.0-RC")
+project.ext.set("retrofit", "2.6.0")
+project.ext.set("interceptor", "3.12.0")
+
+project.ext.set("glide", "4.9.0")
+
+
+//other
+project.ext.set("mainscope", "1.0")
+
+//view-model
+project.ext.set("lifecycle", "2.2.0-alpha02")
+
+
