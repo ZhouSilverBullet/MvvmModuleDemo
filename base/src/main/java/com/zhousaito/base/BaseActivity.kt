@@ -38,8 +38,11 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : ViewModel> : AppCompatAct
         initView()
         initObserve()
         initData()
+        loadData()
     }
 
+    override fun initData() {
+    }
 
 //    inline fun <reified vm : ViewModel> bindViewModel(): vm {
 //        return ViewModelProviders.of(this@BaseActivity)[vm::class.java]

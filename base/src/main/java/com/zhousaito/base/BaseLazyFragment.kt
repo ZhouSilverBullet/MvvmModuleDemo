@@ -15,16 +15,25 @@ import androidx.lifecycle.ViewModelProviders
  * Created by zhousaito 2019-07-25 18:29
  * Version: 1.0
  * Description:
+ * 这个类只进行一次加载
+ * 剩下的再次来到的时候，要用户手动加载
+ *
  */
-abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment(), IVMView<VM> {
+abstract class BaseLazyFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment(), IVMView<VM> {
     companion object {
         const val TAG = "BaseFragment"
     }
 
+    /**
+     * 是否已经请求了下载
+     *  todo 这个标识数据是否加载为空
+     */
+    var isLoad = false
+
     lateinit var mBinding: DB
 
     val mViewModel: VM by lazy {
-        ViewModelProviders.of(this@BaseFragment)[vmClazz()]
+        ViewModelProviders.of(this@BaseLazyFragment)[vmClazz()]
 
 //        下面这种方式是反射获取的，有时候会比较影响性能
 //        ViewModelProviders.of(this@BaseActivity)[getVmClass()]
@@ -48,7 +57,10 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment(), 
 
     override fun onResume() {
         super.onResume()
-        loadData()
+        if (!isLoad) {
+            isLoad = true
+            loadData()
+        }
     }
 
 }

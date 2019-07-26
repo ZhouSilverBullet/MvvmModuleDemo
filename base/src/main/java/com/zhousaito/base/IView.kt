@@ -19,15 +19,18 @@ interface IView {
      */
     fun initView()
 
-    /**
-     * 初始化 vm的Observe
-     * 用于需要处理后的数据进行界面交互的
-     *
-     */
-    fun initObserve()
 
     /**
      * 初始化数据，或者获取数据
+     *
+     * 所有的base进行了实现，提供子类使用，比loadData前面一步被调用
+     * {@link IView.loadData()}
+     * 这个感觉没什么必要了，有个loadData的情况下
      */
     fun initData()
+
+    /**
+     * 网路请求 或者 做耗时操作
+     */
+    fun loadData()
 }

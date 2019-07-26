@@ -16,19 +16,12 @@ import androidx.lifecycle.ViewModelProviders
  * Version: 1.0
  * Description:
  */
-abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment(), IVMView<VM> {
+abstract class BaseNormalFragment<DB : ViewDataBinding> : Fragment(), IView {
     companion object {
         const val TAG = "BaseFragment"
     }
 
     lateinit var mBinding: DB
-
-    val mViewModel: VM by lazy {
-        ViewModelProviders.of(this@BaseFragment)[vmClazz()]
-
-//        下面这种方式是反射获取的，有时候会比较影响性能
-//        ViewModelProviders.of(this@BaseActivity)[getVmClass()]
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,11 +32,7 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment(), 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        initObserve()
         initData()
-    }
-
-    override fun initData() {
     }
 
     override fun onResume() {
