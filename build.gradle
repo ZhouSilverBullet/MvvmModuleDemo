@@ -62,3 +62,7 @@ project.ext.set("mainscope", "1.0")
 project.ext.set("lifecycle", "2.2.0-alpha02")
 
 
+//工具
+project.ext.set("leakcanary", "2.0-alpha-3")
+
+
